@@ -1,0 +1,45 @@
+﻿@using ScoreAnalyser.Model;
+@model ScoreAnalyser.Model.ScoresListModel
+
+<div align="center">
+
+    <br /><br />
+    <div class="row">
+        <div class="col-md-4">
+            <h4>Lowest Score Difference Team :<b>@ViewBag.TeamName</b>  </h4>
+        </div>
+
+    </div>
+    <table cellpadding="2"
+           class="table"
+           cellspacing="2"
+           border="1">
+        <tr class="btn-primary">
+            <th> Team </th>
+            <th> Played</th>
+            <th> Won</th>
+            <th> Lost</th>
+            <th> Draw</th>
+            <th> Goals Scored</th>
+            <th> Goals Coceeded</th>
+            <th> Goals Difference</th>
+            <th> Points</th>
+        </tr>
+        @foreach (ScoreModel team in Model.ScoreList)
+        {
+            var className = string.Compare(ViewBag.OriginalTeamName, team.TeamName) == 0 ? "btn-warning" : "btn-success";
+            <tr class="@className">
+            <td>@team.TeamName</td>
+            <td>@team.MatchesPlayed</td>
+            <td>@team.MatchesWon</td>
+            <td>@team.MatchesLost</td>
+            <td>@team.MatchesDrawn</td>
+            <td>@team.GoalsFor  </td>
+            <td>@team.GoalsAgainst</td>
+            <td>@team.GoalDifference</td>
+            <td>@team.Points</td>
+        </tr>
+        }
+    </table>
+</div>
+
